@@ -2,6 +2,7 @@ debug: true
 build:
   image: golang:1.5
   commands:
+    - sleep 60
     - echo hi
 publish:
   s3_sync:native:
