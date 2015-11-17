@@ -1,0 +1,28 @@
+debug: true
+build:
+  image: golang:1.5
+  commands:
+    - echo hi
+publish:
+  s3_sync:native:
+    when:
+      branch: master
+      event: push
+    access_key: some_secret
+    secret_key: some_other_secret
+    bucket: stage-blog.anyet.net
+    region: us-east-1
+    acl: public-read
+    source: output
+    delete: true
+  s3_sync:native:
+    when:
+      event: deployment
+    access_key: some_secret
+    secret_key: some_other_secret
+    bucket: boogers.andyet.com
+    region: us-east-1
+    acl: public-read
+    source: output
+    delete: true
+
